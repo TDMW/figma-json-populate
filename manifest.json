@@ -1,0 +1,7 @@
+{
+  "name": "JSON Populate",
+  "id": "749195619095691211",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html"
+}

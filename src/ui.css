@@ -1,0 +1,106 @@
+.ui {
+  margin: 10px;
+  font: 12px "Roboto"; }
+
+input,
+label {
+  display: block;
+  padding-left: 5px; }
+
+label {
+  margin: 4px 0; }
+
+.field {
+  width: 340px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+  .field .field__container {
+    display: flex; }
+    .field .field__container input {
+      flex-grow: 1;
+      margin-right: 5px; }
+      .field .field__container input:focus {
+        border: none;
+        box-shadow: inset 0 0 0 2px #18a0fb; }
+
+.feedback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 340px;
+  height: 150px;
+  color: #f00; }
+
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100px;
+  color: #333; }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 340px;
+  padding-bottom: 10px; }
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 350px;
+  height: auto;
+  margin: 0 0 -5px -5px;
+  padding-top: 5px; }
+  .buttons .buttons__filler {
+    flex-grow: 1;
+    height: 30px;
+    opacity: 0; }
+
+.button {
+  padding: 8px 15px;
+  color: #000;
+  border-radius: 5px;
+  background: #fff;
+  border: none;
+  box-shadow: inset 0 0 0 1px #000;
+  outline: none; }
+  .button:focus {
+    box-shadow: inset 0 0 0 2px #18a0fb; }
+
+.button__main {
+  margin: 5px;
+  color: #fff;
+  background: #18a0fb;
+  box-shadow: none; }
+
+.invisible {
+  display: none; }
+
+.loader {
+  width: 30px;
+  height: 30px;
+  margin: 50px auto;
+  background-color: #18a0fb;
+  border-radius: 100%;
+  -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+  animation: sk-scaleout 1s infinite ease-in-out; }
+
+@-webkit-keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0); }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0; } }
+
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0); }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; } }

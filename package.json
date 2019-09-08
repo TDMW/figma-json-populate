@@ -1,0 +1,36 @@
+{
+  "name": "json-populate",
+  "version": "1.0.0",
+  "description": "Figma plugin to replace text nodes with pre-defined data",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --watch ./src/scss -o ./src",
+    "start": "npx webpack --mode=development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/TheDMW/realfakedata.git"
+  },
+  "author": "Bart Simons",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/TheDMW/realfakedata/issues"
+  },
+  "homepage": "https://gitlab.com/TheDMW/realfakedata#readme",
+  "devDependencies": {
+    "css-loader": "^3.2.0",
+    "html-webpack-inline-source-plugin": "0.0.10",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.0.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-vi": "^1.5.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.6.2",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  },
+  "dependencies": {
+    "node-sass": "^4.12.0"
+  }
+}
