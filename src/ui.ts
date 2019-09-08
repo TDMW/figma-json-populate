@@ -1,5 +1,4 @@
 import "./ui.css";
-import { url } from "inspector";
 
 // Setup
 let temp;
