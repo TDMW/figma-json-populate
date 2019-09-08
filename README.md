@@ -1,22 +1,34 @@
-This plugin template uses Typescript. If you are familiar with Javascript, Typescript will
-look very familiar. In fact, valid Javascript code is already valid Typescript code.
+# JSON Populate
 
-Typescript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
+JSON Populate is a Figma plugin that allows you to link to a JSON file to use it and replace text layers of your Figma document with actual data.
 
-For more information, visit https://www.typescriptlang.org/
+## Installation
 
-Using Typescript requires a compiler to convert Typescript (code.ts) into Javascript (code.js)
-for the browser to run.
+Installing the plugin can be done through Figma's Plugin store. To run the code you have to run `npm install` first and make sure you have [TypeScript](https://www.typescriptlang.org/) installed globally on your machine. Then to run the plugin:
 
-To get the TypeScript compiler working:
+```bash
+npm run start
+npm run scss
+```
 
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Install the TypeScript compiler globally: `sudo npm install -g typescript`.
-3. Open this directory in Visual Studio Code.
-4. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-    then select "tsc: watch - tsconfig.json". You will have to do this again every time
-    you reopen Visual Studio Code.
+## Usage
 
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+Your JSON should use the following structure:
+
+```javascript
+
+{
+   "categoryA": ["itemA", "itemB"],
+   "categoryB: ["itemC", "itemD"]
+}
+```
+
+## Roadmap
+* Better documentation
+* More error handeling
+* Support for more JSON structures
+* Use local JSON/Paste JSON
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
