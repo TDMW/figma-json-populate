@@ -19,7 +19,7 @@ Your JSON should use the following structure:
 
 {
    "categoryA": ["itemA", "itemB"],
-   "categoryB: ["itemC", "itemD"]
+   "categoryB": ["itemC", "itemD"]
 }
 ```
 
