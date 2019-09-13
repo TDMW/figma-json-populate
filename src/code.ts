@@ -39,7 +39,7 @@ figma.ui.onmessage = async msg => {
     const dataSource = data[content];
 
     // Check if anything is selected and if it's a text layer
-    nodes.forEach(function(node) {
+    nodes.forEach(function(node, index) {
       if (!node) {
         figma.ui.postMessage("no-selection");
       } else if (node.type != "TEXT") {
@@ -48,17 +48,10 @@ figma.ui.onmessage = async msg => {
         return;
       }
 
-      const index = genNumber(dataSource.length);
-
       replaceText(node, dataSource[index]);
     });
   }
 };
-
-function genNumber(max) {
-  // Generate random number between start of array and last item of array
-  return Math.floor(Math.random() * max);
-}
 
 // Set URL to ClientStorage
 async function setURL(url) {
