@@ -1,6 +1,7 @@
 .ui {
   margin: 10px;
-  font: 12px "Roboto"; }
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif; }
 
 input,
 label {
@@ -9,6 +10,17 @@ label {
 
 label {
   margin: 4px 0; }
+
+select {
+  display: block;
+  width: 100px;
+  border: 0;
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance-: none;
+  font-size: 12px;
+  padding: 6px; }
 
 .field {
   width: 340px;
@@ -22,6 +34,9 @@ label {
       .field .field__container input:focus {
         border: none;
         box-shadow: inset 0 0 0 2px #18a0fb; }
+
+.field__buttons {
+  border-bottom: none; }
 
 .feedback {
   display: flex;
@@ -45,7 +60,8 @@ label {
   display: flex;
   justify-content: space-between;
   width: 340px;
-  padding-bottom: 10px; }
+  padding: 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
 .buttons {
   display: flex;
@@ -79,6 +95,12 @@ label {
 
 .invisible {
   display: none; }
+
+.sorting {
+  display: flex;
+  align-items: center; }
+  .sorting p {
+    margin: 0 6px 0 0; }
 
 .loader {
   width: 30px;
