@@ -7,17 +7,21 @@
   </div>
 
   <p id="feedback" class="feedback invisible">No feedback</p>
-  <p id="intro" class="intro">
+  <p id="intro" class="intro invisible">
     Enter a URL to your JSON file in the field above and press save.
   </p>
-
   <div id="loader" class="loader invisible"></div>
 
-  <div id="field__buttons" class="field">
+  <div id="field__buttons" class="field field__buttons">
     <div id="buttons" class="buttons"></div>
   </div>
   <div class="footer">
-    <div>
+    <div class="sorting">
+      <p>Fill order:</p>
+      <select id="sortation">
+        <option>Random</option>
+        <option>Original</option>
+      </select>
       <!--button class="button">?</button> ToDo: Write repo and link to it -->
     </div>
     <button id="cancel" class="button">Close</button>

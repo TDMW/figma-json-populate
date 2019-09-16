@@ -1,165 +1,195 @@
-import "./ui.css";
+import './ui.css';
 
 // Setup
-let temp;
-let buttons = document.getElementById("buttons");
-let feedback = document.getElementById("feedback");
-let input = document.getElementById("input") as HTMLInputElement;
-let intro = document.getElementById("intro");
-let loader = document.getElementById("loader");
+const delay = 2500;
+let temp = null;
+
+let buttons = document.getElementById('buttons');
+let feedback = document.getElementById('feedback');
+let input = document.getElementById('input') as HTMLInputElement;
+let intro = document.getElementById('intro');
+let loader = document.getElementById('loader');
+let sortation = document.getElementById('sortation') as HTMLInputElement;
 
 function init() {
-  // Hide the intro text
-  intro.classList.add("invisible");
-  // Get stored URL
-  parent.postMessage({ pluginMessage: { type: "get-url" } }, "*");
+	// Get stored URL
+	parent.postMessage({ pluginMessage: { type: 'get-url' } }, '*');
 }
 
 onmessage = event => {
-  const msg = event.data.pluginMessage;
-  if (msg === "no-url") {
-    removeFeedback(0);
-    intro.classList.remove("invisible");
+	const msg = event.data.pluginMessage;
 
-    return;
-  }
-  if (msg === "non-text") {
-    toggleLoader(false);
-    showFeedback(`You've selected one or more non-text nodes.`);
+	if (msg === 'no-url') {
+		removeFeedback(0);
+		intro.classList.remove('invisible');
 
-    // Remove feedback after 2,5s
-    removeFeedback(2500);
+		return;
+	}
 
-    return;
-  } else if (msg === "no-selection") {
-    toggleLoader(false);
-    showFeedback(`No text elements selected. Please select something`);
+	if (msg === 'non-text') {
+		toggleLoader(false);
+		showFeedback(`You've selected one or more non-text nodes.`);
 
-    // Remove feedback after 2,5s
-    removeFeedback(2500);
-  } else if (msg != undefined) {
-    // Set URL in input field
-    input.value = msg;
+		// Remove feedback after 2,5s
+		removeFeedback(delay);
 
-    getData(msg)
-      .then(data => {
-        // Send data to code
-        parent.postMessage(
-          { pluginMessage: { type: "received-data", content: data } },
-          "*"
-        );
+		return;
+	}
 
-        //Reset buttons
-        temp = null;
+	if (msg === 'no-selection') {
+		toggleLoader(false);
+		showFeedback(`No text elements selected. Please select something`);
 
-        // Get keys from data
-        temp = Object.keys(data);
+		// Remove feedback after 2,5s
+		removeFeedback(delay);
 
-        // Generate buttons for all keys
-        temp.forEach(function(el) {
-          generateButtons(el);
-        });
+		return;
+	}
 
-        // Remove the loader
-        toggleLoader(false);
+	if (msg != undefined) {
+		// Set URL in input field
+		input.value = msg;
 
-        // This button fills out the remaining space after rendering all the working buttons
-        const btn = document.createElement("button");
-        btn.className = "buttons__filler";
-        document.getElementById("buttons").appendChild(btn);
-      })
-      .catch(reason => {
-        toggleLoader(false);
-        showFeedback(
-          `Can't show data. Check if URL is correct or if JSON has errors.`
-        );
-      });
-  }
+		toggleIntro(false);
+
+		getData(msg)
+			.then(data => {
+				// Send data to code
+				parent.postMessage(
+					{ pluginMessage: { type: 'received-data', content: data } },
+					'*'
+				);
+
+				//Reset buttons
+				temp = null;
+
+				// Get keys from data
+				temp = Object.keys(data);
+
+				// Generate buttons for all keys
+				temp.forEach(generateButtons);
+
+				// Remove the loader
+				toggleLoader(false);
+
+				// This button fills out the remaining space after rendering all the working buttons
+				const btn = document.createElement('button');
+				btn.className = 'buttons__filler';
+				document.getElementById('buttons').appendChild(btn);
+			})
+			.catch(reason => {
+				// Hide loader, intro and show feedback
+				toggleLoader(false);
+
+				showFeedback(
+					`Can't show data. Check if URL is correct or if JSON has errors.`
+				);
+
+				// Remove feedback after 2,5s
+				removeFeedback(delay);
+
+				// Show intro
+				setTimeout(() => {
+					toggleIntro(true);
+				}, delay);
+			});
+	}
 };
 
 function generateButtons(val) {
-  // If not visible, make visible again
-  buttons.classList.remove("invisible");
+	// If not visible, make visible again
+	buttons.classList.remove('invisible');
 
-  // Create let that contains button, set some properties/attributes to this button
-  let button = document.createElement("button");
-  button.innerHTML = capFirstLetter(val);
-  button.id = val;
-  button.className = "button button__main";
+	// Create let that contains button, set some properties/attributes to this button
+	let button = document.createElement('button');
+	button.innerHTML = capFirstLetter(val);
+	button.id = val;
+	button.className = 'button button__main';
 
-  // Onclick send a nmessage stating the value of the button
-  button.onclick = () => {
-    parent.postMessage(
-      { pluginMessage: { type: "replace-text", content: val } },
-      "*"
-    );
-  };
+	// Onclick send a nmessage stating the value of the button
+	button.onclick = () => {
+		parent.postMessage(
+			{
+				pluginMessage: {
+					type: 'replace-text',
+					content: val,
+					sorting: sortation.value.toLowerCase()
+				}
+			},
+			'*'
+		);
+	};
 
-  // Place the button on a element with the id 'buttons'
-  buttons.appendChild(button);
+	// Place the button on a element with the id 'buttons'
+	buttons.appendChild(button);
 }
 
 async function getData(url: string) {
-  let data = await (await fetch(url)).json();
+	let data = await (await fetch(url)).json();
 
-  if (!data) {
-    toggleLoader(false);
-    showFeedback(`Error, couldn't retrieve data`);
-  } else {
-    return data;
-  }
+	if (!data) {
+		toggleLoader(false);
+		showFeedback(`Error, couldn't retrieve data`);
+	} else {
+		return data;
+	}
 }
 
 function capFirstLetter(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function toggleLoader(show) {
-  if (show === true) {
-    loader.classList.remove("invisible");
-  } else {
-    loader.classList.add("invisible");
-  }
+function toggleLoader(show: boolean) {
+	if (show === true) {
+		loader.classList.remove('invisible');
+	} else {
+		loader.classList.add('invisible');
+	}
 }
 
 // ToDo: Rewrite this stuff to 1 method for showing feedback
 function showFeedback(str: string) {
-  if (str) {
-    feedback.innerHTML = str;
-    buttons.classList.add("invisible");
-    feedback.classList.remove("invisible");
-  }
+	if (str) {
+		feedback.innerHTML = str;
+		buttons.classList.add('invisible');
+		feedback.classList.remove('invisible');
+	}
 }
 
 function removeFeedback(length: number) {
-  setTimeout(function() {
-    buttons.classList.remove("invisible");
-    feedback.classList.add("invisible");
-  }, length);
+	setTimeout(function() {
+		buttons.classList.remove('invisible');
+		feedback.classList.add('invisible');
+	}, length);
+}
+
+function toggleIntro(show: boolean) {
+	intro.classList.toggle('invisible', !show);
 }
 
 // Close plugin when cancel is clicked
-document.getElementById("cancel").onclick = () => {
-  parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
+document.getElementById('cancel').onclick = () => {
+	parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
 };
 
 // Save JSON url on click
-document.getElementById("save").onclick = async () => {
-  intro.classList.add("invisible");
+document.getElementById('save').onclick = async () => {
+	toggleIntro(false);
 
-  // Clear buttons div
-  buttons.innerHTML = "";
+	// Clear buttons div
+	buttons.innerHTML = '';
 
-  if (input.value) {
-    toggleLoader(true);
-    parent.postMessage(
-      { pluginMessage: { type: "set-url", content: input.value } },
-      "*"
-    );
-  } else {
-    showFeedback("No URL entered");
-    removeFeedback(2000);
-  }
+	if (input.value) {
+		toggleLoader(true);
+
+		parent.postMessage(
+			{ pluginMessage: { type: 'set-url', content: input.value } },
+			'*'
+		);
+	} else {
+		showFeedback('No URL entered');
+		removeFeedback(1500);
+	}
 };
 
 // Initialize plugin

@@ -1,151 +1,181 @@
 .ui {
-  margin: 10px;
-  font: 12px "Roboto";
+	margin: 10px;
+	font-size: 12px;
+	font-family: 'Roboto', sans-serif;
 }
 
 input,
 label {
-  display: block;
+	display: block;
 
-  padding-left: 5px;
+	padding-left: 5px;
 }
 
 label {
-  margin: 4px 0;
+	margin: 4px 0;
+}
+
+select {
+	display: block;
+	width: 100px;
+
+	border: 0;
+	outline: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+	appearance: none;
+	-webkit-appearance-: none;
+
+	font-size: 12px;
+
+	padding: 6px;
 }
 
 .field {
-  width: 340px;
-  padding-bottom: 12px;
+	width: 340px;
+	padding-bottom: 12px;
 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-  .field__container {
-    display: flex;
+	.field__container {
+		display: flex;
 
-    input {
-      flex-grow: 1;
+		input {
+			flex-grow: 1;
 
-      margin-right: 5px;
+			margin-right: 5px;
 
-      &:focus {
-        border: none;
-        box-shadow: inset 0 0 0 2px #18a0fb;
-      }
-    }
-  }
+			&:focus {
+				border: none;
+				box-shadow: inset 0 0 0 2px #18a0fb;
+			}
+		}
+	}
+}
+
+.field__buttons {
+	border-bottom: none;
 }
 
 .feedback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  width: 340px;
-  height: 150px;
+	width: 340px;
+	height: 150px;
 
-  color: #f00;
+	color: #f00;
 }
 
 .intro {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  text-align: center;
-  height: 100px;
+	text-align: center;
+	height: 100px;
 
-  color: #333;
+	color: #333;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: space-between;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	justify-content: space-between;
 
-  width: 340px;
-  padding-bottom: 10px;
+	width: 340px;
+	padding: 10px 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 
-  width: 350px;
-  height: auto;
+	width: 350px;
+	height: auto;
 
-  margin: 0 0 -5px -5px;
-  padding-top: 5px;
+	margin: 0 0 -5px -5px;
+	padding-top: 5px;
 
-  .buttons__filler {
-    flex-grow: 1;
+	.buttons__filler {
+		flex-grow: 1;
 
-    height: 30px;
-    opacity: 0;
-  }
+		height: 30px;
+		opacity: 0;
+	}
 }
 
 .button {
-  padding: 8px 15px;
+	padding: 8px 15px;
 
-  color: #000;
+	color: #000;
 
-  border-radius: 5px;
-  background: #fff;
-  border: none;
+	border-radius: 5px;
+	background: #fff;
+	border: none;
 
-  box-shadow: inset 0 0 0 1px #000;
-  outline: none;
+	box-shadow: inset 0 0 0 1px #000;
+	outline: none;
 
-  &:focus {
-    box-shadow: inset 0 0 0 2px #18a0fb;
-  }
+	&:focus {
+		box-shadow: inset 0 0 0 2px #18a0fb;
+	}
 }
 
 .button__main {
-  margin: 5px;
+	margin: 5px;
 
-  color: #fff;
+	color: #fff;
 
-  background: #18a0fb;
-  box-shadow: none;
+	background: #18a0fb;
+	box-shadow: none;
 }
 
 .invisible {
-  display: none;
+	display: none;
+}
+
+.sorting {
+	display: flex;
+	align-items: center;
+
+	p {
+		margin: 0 6px 0 0;
+	}
 }
 
 .loader {
-  width: 30px;
-  height: 30px;
-  margin: 50px auto;
-  background-color: #18a0fb;
+	width: 30px;
+	height: 30px;
+	margin: 50px auto;
+	background-color: #18a0fb;
 
-  border-radius: 100%;
-  -webkit-animation: sk-scaleout 1s infinite ease-in-out;
-  animation: sk-scaleout 1s infinite ease-in-out;
+	border-radius: 100%;
+	-webkit-animation: sk-scaleout 1s infinite ease-in-out;
+	animation: sk-scaleout 1s infinite ease-in-out;
 }
 
 @-webkit-keyframes sk-scaleout {
-  0% {
-    -webkit-transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    opacity: 0;
-  }
+	0% {
+		-webkit-transform: scale(0);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		opacity: 0;
+	}
 }
 
 @keyframes sk-scaleout {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 0;
-  }
+	0% {
+		-webkit-transform: scale(0);
+		transform: scale(0);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 0;
+	}
 }
