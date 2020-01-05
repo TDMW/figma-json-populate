@@ -36,7 +36,11 @@ select {
         box-shadow: inset 0 0 0 2px #18a0fb; }
 
 .field__buttons {
-  border-bottom: none; }
+  border-bottom: none;
+  max-height: 179px;
+  overflow: scroll;
+  padding-right: 30px;
+  max-width: 310px; }
 
 .feedback {
   display: flex;
